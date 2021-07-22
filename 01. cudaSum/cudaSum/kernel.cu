@@ -34,19 +34,20 @@ public :
 
 };
 
-__global__ void cudaSum(int *_a, int* _b, int* _c)
+__global__ void cudaSum(int* _a, int* _b, int* _c)
 {
 	int tNum = threadIdx.x;
 	int dNum = blockIdx.x;
 	int idx = dNum * blockDim.x + tNum;
 	_c[idx] = _a[idx] + _b[idx];
+	//printf("%d = %d + %d \n", _c[idx], _a[idx], _b[idx]);
 }
 
 int main()
 {
 
-	int _threadx = 512;
-	int _dimx = 10240;
+	int _threadx = 3;
+	int _dimx = 3;
 	int num = _threadx * _dimx;
 	int SIZE = sizeof(int) * num;
 
